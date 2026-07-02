@@ -27,3 +27,12 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/node-hello-world:dev
+
+      - name: Trigger Coolify deployment
+        env:
+          COOLIFY_DEPLOY_TOKEN: ${{ secrets.COOLIFY_DEPLOY_TOKEN }}
+          COOLIFY_NODEHELLOWORLD_WEBHOOK: ${{ secrets.COOLIFY_NODEHELLOWORLD_WEBHOOK }}
+        run: |
+          curl -X POST "$COOLIFY_NODEHELLOWORLD_WEBHOOK" \
+            -H "Authorization: Bearer $COOLIFY_DEPLOY_TOKEN" \
+            -H "Content-Type: application/json"
