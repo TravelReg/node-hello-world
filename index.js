@@ -11,7 +11,6 @@ app.get('/', (req, res) => {
     <h1>My Node.js Application</h1>
     <p><strong>Status:</strong> Running</p>
     <p><strong>Version:</strong> ${VERSION}</p>
-    <p><strong>Hostname:</strong> ${os.hostname()}</p>
     <p><strong>Environment:</strong> ${process.env.NODE_ENV || 'development'}</p>
   `)
 })
